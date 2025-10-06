@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+fastapi
+uvicorn[standard]
+sqlmodel
+
+
