@@ -4,24 +4,18 @@ from typing import Optional, List
 
 app = FastAPI(title="Golden Library API")
 
-# -----------------------------
-# Database setup
-# -----------------------------
+
 DATABASE_URL = "sqlite:///books.db"
 engine = create_engine(DATABASE_URL, echo=True)
 
-# -----------------------------
-# Model
-# -----------------------------
+
 class Book(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str
     author: str
     year: int
 
-# -----------------------------
-# Create DB
-# -----------------------------
+
 def create_db():
     SQLModel.metadata.create_all(engine)
 
@@ -29,9 +23,6 @@ def create_db():
 def on_startup():
     create_db()
 
-# -----------------------------
-# Endpoints
-# -----------------------------
 @app.get("/")
 def root():
     return {"message": "Library API жұмыс істеп тұр! /books endpoint-ін тексеріңіз."}
